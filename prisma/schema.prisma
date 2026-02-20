@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String         @id @default(uuid())
+  email        String         @unique
+  role         Role
+  number       String
+  name         String
+  imageLink    String?
+  categoryId   String
+  bio          String?
+  status       UserStatus
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  tutorProfile TutorProfiles?
+
+  studentRewiews StudentReviews[]
+  bookings       Bookings[]
+  category       Categories       @relation(fields: [categoryId], references: [id])
+
+  @@index([email])
+}
+
+model TutorProfiles {
+  id         String      @id @default(uuid())
+  userId     String      @unique
+  aboutTutor String
+  status     TutorStatus
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  studentReviews StudentReviews[]
+  bookings       Bookings[]
+  user           User             @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Categories {
+  id        String         @id @default(uuid())
+  name      String         @unique
+  status    CatagoryStatus
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  users     User[]
+
+  @@index([id])
+}
+
+model Bookings {
+  id         String        @id @default(uuid())
+  tutorId    String
+  studentId  String
+  categoryId String
+  date       DateTime
+  status     BookingStatus
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  tutor   TutorProfiles @relation(fields: [tutorId], references: [id])
+  student User          @relation(fields: [studentId], references: [id])
+
+  @@index([tutorId])
+  @@index([studentId])
+}
+
+model StudentReviews {
+  id        String       @id @default(uuid())
+  tutorId   String
+  studentId String
+  rating    Int
+  comment   String?
+  status    ReviewStatus
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  tutor   TutorProfiles @relation(fields: [tutorId], references: [id])
+  student User          @relation(fields: [studentId], references: [id])
+
+  @@index([tutorId])
+  @@index([studentId])
+}
+
+enum Role {
+  STUDENT
+  TUTOR
+}
+
+enum BookingStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  COMPLETED
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  BANNED
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum TutorStatus {
+  AVAILABLE
+  UNAVAILABLE
+}
+
+enum CatagoryStatus {
+  COMEING_SOON
+  ACTIVE
+}
