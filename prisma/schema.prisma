@@ -8,50 +8,51 @@ datasource db {
 }
 
 model User {
-  id           String         @id @default(uuid())
-  email        String         @unique
-  role         Role
-  number       String
-  name         String
-  imageLink    String?
-  categoryId   String
-  bio          String?
-  status       UserStatus
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  tutorProfile TutorProfiles?
-
-  studentRewiews StudentReviews[]
+  id             String           @id @default(uuid())
+  email          String           @unique
+  password       String
+  role           Role
+  name           String
+  imageLink      String?
+  categoryId     String?
+  bio            String?
+  status         UserStatus       @default(ACTIVE)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  phone          String?
   bookings       Bookings[]
-  category       Categories       @relation(fields: [categoryId], references: [id])
+  studentReviews StudentReviews[]
+  tutorProfile   TutorProfiles?
+  category       Categories?      @relation(fields: [categoryId], references: [id])
 
-  @@index([email])
+  @@map("users")
 }
 
 model TutorProfiles {
-  id         String      @id @default(uuid())
-  userId     String      @unique
-  aboutTutor String
-  status     TutorStatus
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-
-  studentReviews StudentReviews[]
+  id             String           @id @default(uuid())
+  userId         String           @unique
+  aboutTutor     String
+  sessionPrice   Float?
+  status         TutorStatus      @default(AVAILABLE)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
   bookings       Bookings[]
+  studentReviews StudentReviews[]
   user           User             @relation(fields: [userId], references: [id])
 
-  @@index([userId])
+  @@map("tutor_profiles")
 }
 
 model Categories {
   id        String         @id @default(uuid())
   name      String         @unique
-  status    CatagoryStatus
+  status    CategoryStatus @default(ACTIVE)
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
+  bookings  Bookings[]
   users     User[]
 
-  @@index([id])
+  @@map("categories")
 }
 
 model Bookings {
@@ -60,32 +61,30 @@ model Bookings {
   studentId  String
   categoryId String
   date       DateTime
-  status     BookingStatus
+  totalPrice Float?
+  status     BookingStatus @default(PENDING)
   createdAt  DateTime      @default(now())
   updatedAt  DateTime      @updatedAt
+  category   Categories    @relation(fields: [categoryId], references: [id])
+  student    User          @relation(fields: [studentId], references: [id])
+  tutor      TutorProfiles @relation(fields: [tutorId], references: [id])
 
-  tutor   TutorProfiles @relation(fields: [tutorId], references: [id])
-  student User          @relation(fields: [studentId], references: [id])
-
-  @@index([tutorId])
-  @@index([studentId])
+  @@map("bookings")
 }
 
 model StudentReviews {
-  id        String       @id @default(uuid())
+  id        String        @id @default(uuid())
   tutorId   String
   studentId String
   rating    Int
   comment   String?
-  status    ReviewStatus
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  status    ReviewStatus  @default(PENDING)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  student   User          @relation(fields: [studentId], references: [id])
+  tutor     TutorProfiles @relation(fields: [tutorId], references: [id])
 
-  tutor   TutorProfiles @relation(fields: [tutorId], references: [id])
-  student User          @relation(fields: [studentId], references: [id])
-
-  @@index([tutorId])
-  @@index([studentId])
+  @@map("student_reviews")
 }
 
 enum Role {
@@ -117,7 +116,7 @@ enum TutorStatus {
   UNAVAILABLE
 }
 
-enum CatagoryStatus {
-  COMEING_SOON
+enum CategoryStatus {
+  COMING_SOON
   ACTIVE
 }

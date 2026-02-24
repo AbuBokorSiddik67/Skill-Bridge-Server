@@ -240,8 +240,8 @@ export type StudentReviewsWhereInput = {
   status?: Prisma.EnumReviewStatusFilter<"StudentReviews"> | $Enums.ReviewStatus
   createdAt?: Prisma.DateTimeFilter<"StudentReviews"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentReviews"> | Date | string
-  tutor?: Prisma.XOR<Prisma.TutorProfilesScalarRelationFilter, Prisma.TutorProfilesWhereInput>
   student?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  tutor?: Prisma.XOR<Prisma.TutorProfilesScalarRelationFilter, Prisma.TutorProfilesWhereInput>
 }
 
 export type StudentReviewsOrderByWithRelationInput = {
@@ -253,8 +253,8 @@ export type StudentReviewsOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  tutor?: Prisma.TutorProfilesOrderByWithRelationInput
   student?: Prisma.UserOrderByWithRelationInput
+  tutor?: Prisma.TutorProfilesOrderByWithRelationInput
 }
 
 export type StudentReviewsWhereUniqueInput = Prisma.AtLeast<{
@@ -269,8 +269,8 @@ export type StudentReviewsWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumReviewStatusFilter<"StudentReviews"> | $Enums.ReviewStatus
   createdAt?: Prisma.DateTimeFilter<"StudentReviews"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentReviews"> | Date | string
-  tutor?: Prisma.XOR<Prisma.TutorProfilesScalarRelationFilter, Prisma.TutorProfilesWhereInput>
   student?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  tutor?: Prisma.XOR<Prisma.TutorProfilesScalarRelationFilter, Prisma.TutorProfilesWhereInput>
 }, "id">
 
 export type StudentReviewsOrderByWithAggregationInput = {
@@ -307,11 +307,11 @@ export type StudentReviewsCreateInput = {
   id?: string
   rating: number
   comment?: string | null
-  status: $Enums.ReviewStatus
+  status?: $Enums.ReviewStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  student: Prisma.UserCreateNestedOneWithoutStudentReviewsInput
   tutor: Prisma.TutorProfilesCreateNestedOneWithoutStudentReviewsInput
-  student: Prisma.UserCreateNestedOneWithoutStudentRewiewsInput
 }
 
 export type StudentReviewsUncheckedCreateInput = {
@@ -320,7 +320,7 @@ export type StudentReviewsUncheckedCreateInput = {
   studentId: string
   rating: number
   comment?: string | null
-  status: $Enums.ReviewStatus
+  status?: $Enums.ReviewStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -332,8 +332,8 @@ export type StudentReviewsUpdateInput = {
   status?: Prisma.EnumReviewStatusFieldUpdateOperationsInput | $Enums.ReviewStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  student?: Prisma.UserUpdateOneRequiredWithoutStudentReviewsNestedInput
   tutor?: Prisma.TutorProfilesUpdateOneRequiredWithoutStudentReviewsNestedInput
-  student?: Prisma.UserUpdateOneRequiredWithoutStudentRewiewsNestedInput
 }
 
 export type StudentReviewsUncheckedUpdateInput = {
@@ -353,7 +353,7 @@ export type StudentReviewsCreateManyInput = {
   studentId: string
   rating: number
   comment?: string | null
-  status: $Enums.ReviewStatus
+  status?: $Enums.ReviewStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -529,7 +529,7 @@ export type StudentReviewsCreateWithoutStudentInput = {
   id?: string
   rating: number
   comment?: string | null
-  status: $Enums.ReviewStatus
+  status?: $Enums.ReviewStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   tutor: Prisma.TutorProfilesCreateNestedOneWithoutStudentReviewsInput
@@ -540,7 +540,7 @@ export type StudentReviewsUncheckedCreateWithoutStudentInput = {
   tutorId: string
   rating: number
   comment?: string | null
-  status: $Enums.ReviewStatus
+  status?: $Enums.ReviewStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -589,10 +589,10 @@ export type StudentReviewsCreateWithoutTutorInput = {
   id?: string
   rating: number
   comment?: string | null
-  status: $Enums.ReviewStatus
+  status?: $Enums.ReviewStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  student: Prisma.UserCreateNestedOneWithoutStudentRewiewsInput
+  student: Prisma.UserCreateNestedOneWithoutStudentReviewsInput
 }
 
 export type StudentReviewsUncheckedCreateWithoutTutorInput = {
@@ -600,7 +600,7 @@ export type StudentReviewsUncheckedCreateWithoutTutorInput = {
   studentId: string
   rating: number
   comment?: string | null
-  status: $Enums.ReviewStatus
+  status?: $Enums.ReviewStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -636,7 +636,7 @@ export type StudentReviewsCreateManyStudentInput = {
   tutorId: string
   rating: number
   comment?: string | null
-  status: $Enums.ReviewStatus
+  status?: $Enums.ReviewStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -676,7 +676,7 @@ export type StudentReviewsCreateManyTutorInput = {
   studentId: string
   rating: number
   comment?: string | null
-  status: $Enums.ReviewStatus
+  status?: $Enums.ReviewStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -688,7 +688,7 @@ export type StudentReviewsUpdateWithoutTutorInput = {
   status?: Prisma.EnumReviewStatusFieldUpdateOperationsInput | $Enums.ReviewStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.UserUpdateOneRequiredWithoutStudentRewiewsNestedInput
+  student?: Prisma.UserUpdateOneRequiredWithoutStudentReviewsNestedInput
 }
 
 export type StudentReviewsUncheckedUpdateWithoutTutorInput = {
@@ -722,8 +722,8 @@ export type StudentReviewsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
   student?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentReviews"]>
 
 export type StudentReviewsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -735,8 +735,8 @@ export type StudentReviewsSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
   student?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentReviews"]>
 
 export type StudentReviewsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -748,8 +748,8 @@ export type StudentReviewsSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
   student?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentReviews"]>
 
 export type StudentReviewsSelectScalar = {
@@ -765,23 +765,23 @@ export type StudentReviewsSelectScalar = {
 
 export type StudentReviewsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tutorId" | "studentId" | "rating" | "comment" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["studentReviews"]>
 export type StudentReviewsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
   student?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
 }
 export type StudentReviewsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
   student?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
 }
 export type StudentReviewsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
   student?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.TutorProfilesDefaultArgs<ExtArgs>
 }
 
 export type $StudentReviewsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StudentReviews"
   objects: {
-    tutor: Prisma.$TutorProfilesPayload<ExtArgs>
     student: Prisma.$UserPayload<ExtArgs>
+    tutor: Prisma.$TutorProfilesPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1186,8 +1186,8 @@ readonly fields: StudentReviewsFieldRefs;
  */
 export interface Prisma__StudentReviewsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  tutor<T extends Prisma.TutorProfilesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TutorProfilesDefaultArgs<ExtArgs>>): Prisma.Prisma__TutorProfilesClient<runtime.Types.Result.GetResult<Prisma.$TutorProfilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   student<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  tutor<T extends Prisma.TutorProfilesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TutorProfilesDefaultArgs<ExtArgs>>): Prisma.Prisma__TutorProfilesClient<runtime.Types.Result.GetResult<Prisma.$TutorProfilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

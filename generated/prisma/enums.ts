@@ -53,9 +53,9 @@ export const TutorStatus = {
 export type TutorStatus = (typeof TutorStatus)[keyof typeof TutorStatus]
 
 
-export const CatagoryStatus = {
-  COMEING_SOON: 'COMEING_SOON',
+export const CategoryStatus = {
+  COMING_SOON: 'COMING_SOON',
   ACTIVE: 'ACTIVE'
 } as const
 
-export type CatagoryStatus = (typeof CatagoryStatus)[keyof typeof CatagoryStatus]
+export type CategoryStatus = (typeof CategoryStatus)[keyof typeof CategoryStatus]

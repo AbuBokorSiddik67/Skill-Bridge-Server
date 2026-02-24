@@ -27,7 +27,7 @@ export type AggregateCategories = {
 export type CategoriesMinAggregateOutputType = {
   id: string | null
   name: string | null
-  status: $Enums.CatagoryStatus | null
+  status: $Enums.CategoryStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -35,7 +35,7 @@ export type CategoriesMinAggregateOutputType = {
 export type CategoriesMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  status: $Enums.CatagoryStatus | null
+  status: $Enums.CategoryStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -150,7 +150,7 @@ export type CategoriesGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type CategoriesGroupByOutputType = {
   id: string
   name: string
-  status: $Enums.CatagoryStatus
+  status: $Enums.CategoryStatus
   createdAt: Date
   updatedAt: Date
   _count: CategoriesCountAggregateOutputType | null
@@ -179,9 +179,10 @@ export type CategoriesWhereInput = {
   NOT?: Prisma.CategoriesWhereInput | Prisma.CategoriesWhereInput[]
   id?: Prisma.StringFilter<"Categories"> | string
   name?: Prisma.StringFilter<"Categories"> | string
-  status?: Prisma.EnumCatagoryStatusFilter<"Categories"> | $Enums.CatagoryStatus
+  status?: Prisma.EnumCategoryStatusFilter<"Categories"> | $Enums.CategoryStatus
   createdAt?: Prisma.DateTimeFilter<"Categories"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Categories"> | Date | string
+  bookings?: Prisma.BookingsListRelationFilter
   users?: Prisma.UserListRelationFilter
 }
 
@@ -191,6 +192,7 @@ export type CategoriesOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  bookings?: Prisma.BookingsOrderByRelationAggregateInput
   users?: Prisma.UserOrderByRelationAggregateInput
 }
 
@@ -200,9 +202,10 @@ export type CategoriesWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.CategoriesWhereInput | Prisma.CategoriesWhereInput[]
   OR?: Prisma.CategoriesWhereInput[]
   NOT?: Prisma.CategoriesWhereInput | Prisma.CategoriesWhereInput[]
-  status?: Prisma.EnumCatagoryStatusFilter<"Categories"> | $Enums.CatagoryStatus
+  status?: Prisma.EnumCategoryStatusFilter<"Categories"> | $Enums.CategoryStatus
   createdAt?: Prisma.DateTimeFilter<"Categories"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Categories"> | Date | string
+  bookings?: Prisma.BookingsListRelationFilter
   users?: Prisma.UserListRelationFilter
 }, "id" | "name">
 
@@ -223,7 +226,7 @@ export type CategoriesScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CategoriesScalarWhereWithAggregatesInput | Prisma.CategoriesScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Categories"> | string
   name?: Prisma.StringWithAggregatesFilter<"Categories"> | string
-  status?: Prisma.EnumCatagoryStatusWithAggregatesFilter<"Categories"> | $Enums.CatagoryStatus
+  status?: Prisma.EnumCategoryStatusWithAggregatesFilter<"Categories"> | $Enums.CategoryStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Categories"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Categories"> | Date | string
 }
@@ -231,43 +234,47 @@ export type CategoriesScalarWhereWithAggregatesInput = {
 export type CategoriesCreateInput = {
   id?: string
   name: string
-  status: $Enums.CatagoryStatus
+  status?: $Enums.CategoryStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  bookings?: Prisma.BookingsCreateNestedManyWithoutCategoryInput
   users?: Prisma.UserCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoriesUncheckedCreateInput = {
   id?: string
   name: string
-  status: $Enums.CatagoryStatus
+  status?: $Enums.CategoryStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  bookings?: Prisma.BookingsUncheckedCreateNestedManyWithoutCategoryInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoriesUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumCatagoryStatusFieldUpdateOperationsInput | $Enums.CatagoryStatus
+  status?: Prisma.EnumCategoryStatusFieldUpdateOperationsInput | $Enums.CategoryStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.BookingsUpdateManyWithoutCategoryNestedInput
   users?: Prisma.UserUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoriesUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumCatagoryStatusFieldUpdateOperationsInput | $Enums.CatagoryStatus
+  status?: Prisma.EnumCategoryStatusFieldUpdateOperationsInput | $Enums.CategoryStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.BookingsUncheckedUpdateManyWithoutCategoryNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoriesCreateManyInput = {
   id?: string
   name: string
-  status: $Enums.CatagoryStatus
+  status?: $Enums.CategoryStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -275,7 +282,7 @@ export type CategoriesCreateManyInput = {
 export type CategoriesUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumCatagoryStatusFieldUpdateOperationsInput | $Enums.CatagoryStatus
+  status?: Prisma.EnumCategoryStatusFieldUpdateOperationsInput | $Enums.CategoryStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -283,14 +290,14 @@ export type CategoriesUpdateManyMutationInput = {
 export type CategoriesUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumCatagoryStatusFieldUpdateOperationsInput | $Enums.CatagoryStatus
+  status?: Prisma.EnumCategoryStatusFieldUpdateOperationsInput | $Enums.CategoryStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type CategoriesScalarRelationFilter = {
-  is?: Prisma.CategoriesWhereInput
-  isNot?: Prisma.CategoriesWhereInput
+export type CategoriesNullableScalarRelationFilter = {
+  is?: Prisma.CategoriesWhereInput | null
+  isNot?: Prisma.CategoriesWhereInput | null
 }
 
 export type CategoriesCountOrderByAggregateInput = {
@@ -317,38 +324,61 @@ export type CategoriesMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type CategoriesScalarRelationFilter = {
+  is?: Prisma.CategoriesWhereInput
+  isNot?: Prisma.CategoriesWhereInput
+}
+
 export type CategoriesCreateNestedOneWithoutUsersInput = {
   create?: Prisma.XOR<Prisma.CategoriesCreateWithoutUsersInput, Prisma.CategoriesUncheckedCreateWithoutUsersInput>
   connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutUsersInput
   connect?: Prisma.CategoriesWhereUniqueInput
 }
 
-export type CategoriesUpdateOneRequiredWithoutUsersNestedInput = {
+export type CategoriesUpdateOneWithoutUsersNestedInput = {
   create?: Prisma.XOR<Prisma.CategoriesCreateWithoutUsersInput, Prisma.CategoriesUncheckedCreateWithoutUsersInput>
   connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutUsersInput
   upsert?: Prisma.CategoriesUpsertWithoutUsersInput
+  disconnect?: Prisma.CategoriesWhereInput | boolean
+  delete?: Prisma.CategoriesWhereInput | boolean
   connect?: Prisma.CategoriesWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CategoriesUpdateToOneWithWhereWithoutUsersInput, Prisma.CategoriesUpdateWithoutUsersInput>, Prisma.CategoriesUncheckedUpdateWithoutUsersInput>
 }
 
-export type EnumCatagoryStatusFieldUpdateOperationsInput = {
-  set?: $Enums.CatagoryStatus
+export type EnumCategoryStatusFieldUpdateOperationsInput = {
+  set?: $Enums.CategoryStatus
+}
+
+export type CategoriesCreateNestedOneWithoutBookingsInput = {
+  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutBookingsInput, Prisma.CategoriesUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutBookingsInput
+  connect?: Prisma.CategoriesWhereUniqueInput
+}
+
+export type CategoriesUpdateOneRequiredWithoutBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutBookingsInput, Prisma.CategoriesUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutBookingsInput
+  upsert?: Prisma.CategoriesUpsertWithoutBookingsInput
+  connect?: Prisma.CategoriesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CategoriesUpdateToOneWithWhereWithoutBookingsInput, Prisma.CategoriesUpdateWithoutBookingsInput>, Prisma.CategoriesUncheckedUpdateWithoutBookingsInput>
 }
 
 export type CategoriesCreateWithoutUsersInput = {
   id?: string
   name: string
-  status: $Enums.CatagoryStatus
+  status?: $Enums.CategoryStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  bookings?: Prisma.BookingsCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoriesUncheckedCreateWithoutUsersInput = {
   id?: string
   name: string
-  status: $Enums.CatagoryStatus
+  status?: $Enums.CategoryStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  bookings?: Prisma.BookingsUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoriesCreateOrConnectWithoutUsersInput = {
@@ -370,17 +400,71 @@ export type CategoriesUpdateToOneWithWhereWithoutUsersInput = {
 export type CategoriesUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumCatagoryStatusFieldUpdateOperationsInput | $Enums.CatagoryStatus
+  status?: Prisma.EnumCategoryStatusFieldUpdateOperationsInput | $Enums.CategoryStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.BookingsUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoriesUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumCatagoryStatusFieldUpdateOperationsInput | $Enums.CatagoryStatus
+  status?: Prisma.EnumCategoryStatusFieldUpdateOperationsInput | $Enums.CategoryStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.BookingsUncheckedUpdateManyWithoutCategoryNestedInput
+}
+
+export type CategoriesCreateWithoutBookingsInput = {
+  id?: string
+  name: string
+  status?: $Enums.CategoryStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutCategoryInput
+}
+
+export type CategoriesUncheckedCreateWithoutBookingsInput = {
+  id?: string
+  name: string
+  status?: $Enums.CategoryStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutCategoryInput
+}
+
+export type CategoriesCreateOrConnectWithoutBookingsInput = {
+  where: Prisma.CategoriesWhereUniqueInput
+  create: Prisma.XOR<Prisma.CategoriesCreateWithoutBookingsInput, Prisma.CategoriesUncheckedCreateWithoutBookingsInput>
+}
+
+export type CategoriesUpsertWithoutBookingsInput = {
+  update: Prisma.XOR<Prisma.CategoriesUpdateWithoutBookingsInput, Prisma.CategoriesUncheckedUpdateWithoutBookingsInput>
+  create: Prisma.XOR<Prisma.CategoriesCreateWithoutBookingsInput, Prisma.CategoriesUncheckedCreateWithoutBookingsInput>
+  where?: Prisma.CategoriesWhereInput
+}
+
+export type CategoriesUpdateToOneWithWhereWithoutBookingsInput = {
+  where?: Prisma.CategoriesWhereInput
+  data: Prisma.XOR<Prisma.CategoriesUpdateWithoutBookingsInput, Prisma.CategoriesUncheckedUpdateWithoutBookingsInput>
+}
+
+export type CategoriesUpdateWithoutBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCategoryStatusFieldUpdateOperationsInput | $Enums.CategoryStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutCategoryNestedInput
+}
+
+export type CategoriesUncheckedUpdateWithoutBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCategoryStatusFieldUpdateOperationsInput | $Enums.CategoryStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 
@@ -389,10 +473,12 @@ export type CategoriesUncheckedUpdateWithoutUsersInput = {
  */
 
 export type CategoriesCountOutputType = {
+  bookings: number
   users: number
 }
 
 export type CategoriesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  bookings?: boolean | CategoriesCountOutputTypeCountBookingsArgs
   users?: boolean | CategoriesCountOutputTypeCountUsersArgs
 }
 
@@ -409,6 +495,13 @@ export type CategoriesCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
 /**
  * CategoriesCountOutputType without action
  */
+export type CategoriesCountOutputTypeCountBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookingsWhereInput
+}
+
+/**
+ * CategoriesCountOutputType without action
+ */
 export type CategoriesCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UserWhereInput
 }
@@ -420,6 +513,7 @@ export type CategoriesSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  bookings?: boolean | Prisma.Categories$bookingsArgs<ExtArgs>
   users?: boolean | Prisma.Categories$usersArgs<ExtArgs>
   _count?: boolean | Prisma.CategoriesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["categories"]>
@@ -450,6 +544,7 @@ export type CategoriesSelectScalar = {
 
 export type CategoriesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["categories"]>
 export type CategoriesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  bookings?: boolean | Prisma.Categories$bookingsArgs<ExtArgs>
   users?: boolean | Prisma.Categories$usersArgs<ExtArgs>
   _count?: boolean | Prisma.CategoriesCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -459,12 +554,13 @@ export type CategoriesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $CategoriesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Categories"
   objects: {
+    bookings: Prisma.$BookingsPayload<ExtArgs>[]
     users: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    status: $Enums.CatagoryStatus
+    status: $Enums.CategoryStatus
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["categories"]>
@@ -861,6 +957,7 @@ readonly fields: CategoriesFieldRefs;
  */
 export interface Prisma__CategoriesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  bookings<T extends Prisma.Categories$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Categories$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   users<T extends Prisma.Categories$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Categories$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -893,7 +990,7 @@ export interface Prisma__CategoriesClient<T, Null = never, ExtArgs extends runti
 export interface CategoriesFieldRefs {
   readonly id: Prisma.FieldRef<"Categories", 'String'>
   readonly name: Prisma.FieldRef<"Categories", 'String'>
-  readonly status: Prisma.FieldRef<"Categories", 'CatagoryStatus'>
+  readonly status: Prisma.FieldRef<"Categories", 'CategoryStatus'>
   readonly createdAt: Prisma.FieldRef<"Categories", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Categories", 'DateTime'>
 }
@@ -1281,6 +1378,30 @@ export type CategoriesDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Categories to delete.
    */
   limit?: number
+}
+
+/**
+ * Categories.bookings
+ */
+export type Categories$bookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookings
+   */
+  select?: Prisma.BookingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookings
+   */
+  omit?: Prisma.BookingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookingsInclude<ExtArgs> | null
+  where?: Prisma.BookingsWhereInput
+  orderBy?: Prisma.BookingsOrderByWithRelationInput | Prisma.BookingsOrderByWithRelationInput[]
+  cursor?: Prisma.BookingsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookingsScalarFieldEnum | Prisma.BookingsScalarFieldEnum[]
 }
 
 /**

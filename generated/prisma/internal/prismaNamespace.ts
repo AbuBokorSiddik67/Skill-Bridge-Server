@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.4.0
- * Query Engine version: ab56fe763f921d033a6c195e7ddeb3e255bdbb57
+ * Prisma Client JS version: 7.4.1
+ * Query Engine version: 55ae170b1ced7fc6ed07a15f110549408c501bb3
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.4.0",
-  engine: "ab56fe763f921d033a6c195e7ddeb3e255bdbb57"
+  client: "7.4.1",
+  engine: "55ae170b1ced7fc6ed07a15f110549408c501bb3"
 }
 
 /**
@@ -820,15 +820,16 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
+  password: 'password',
   role: 'role',
-  number: 'number',
   name: 'name',
   imageLink: 'imageLink',
   categoryId: 'categoryId',
   bio: 'bio',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  phone: 'phone'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -838,6 +839,7 @@ export const TutorProfilesScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   aboutTutor: 'aboutTutor',
+  sessionPrice: 'sessionPrice',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -863,6 +865,7 @@ export const BookingsScalarFieldEnum = {
   studentId: 'studentId',
   categoryId: 'categoryId',
   date: 'date',
+  totalPrice: 'totalPrice',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -972,6 +975,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
  * Reference to a field of type 'TutorStatus'
  */
 export type EnumTutorStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TutorStatus'>
@@ -986,16 +1003,16 @@ export type ListEnumTutorStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
- * Reference to a field of type 'CatagoryStatus'
+ * Reference to a field of type 'CategoryStatus'
  */
-export type EnumCatagoryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CatagoryStatus'>
+export type EnumCategoryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoryStatus'>
     
 
 
 /**
- * Reference to a field of type 'CatagoryStatus[]'
+ * Reference to a field of type 'CategoryStatus[]'
  */
-export type ListEnumCatagoryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CatagoryStatus[]'>
+export type ListEnumCategoryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoryStatus[]'>
     
 
 
@@ -1038,20 +1055,6 @@ export type EnumReviewStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'ReviewStatus[]'
  */
 export type ListEnumReviewStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReviewStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
