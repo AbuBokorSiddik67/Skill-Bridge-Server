@@ -17,10 +17,6 @@ const profileUpdate = async (id: string, payload: any) => {
                 bio: payload.bio,
                 address: payload.address,
                 password: payload.password,
-                role: payload.role,
-                status: payload.status,
-                emailVerified: payload.emailVerified,
-                isDeleted: payload.isDeleted,
             },
             select: {
                 id: true,

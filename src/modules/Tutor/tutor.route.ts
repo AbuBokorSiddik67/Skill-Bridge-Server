@@ -6,7 +6,7 @@ const router = express.Router();
 router.post("/create", TutorController.createTutor)
 router.get("/", TutorController.getTutor)
 router.get("/:id", TutorController.getSingleTutor)
-router.put("/update", TutorController.updateTutor)
+router.put("/update/:id", TutorController.updateTutor)
 router.delete("/delete/:id", TutorController.deleteTutor)
 
 export const TutorRoutes = router;

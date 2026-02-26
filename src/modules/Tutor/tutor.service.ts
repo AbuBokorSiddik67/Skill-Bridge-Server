@@ -4,16 +4,32 @@ const createTutor = async (payload: any) => {
     try {
         const result = await prisma.tutorProfiles.create({
             data: {
+                userId: payload.userId,
                 aboutTutor: payload.aboutTutor,
-                sessionPrice: payload.sessionPrice,
-                userId: payload.userId
+                sessionPrice: payload.sessionPrice || 0,
+                experienceYears: payload.experienceYears || 0,
+                education: payload.education || null,
+                status: payload.status || 'AVAILABLE',
+            },
+            include: {
+                user: {
+                    select: {
+                        name: true,
+                        email: true,
+                        imageLink: true
+                    }
+                }
             }
-        })
+        });
+
         return result;
-    } catch (error) {
-        throw error
+    } catch (error: any) {
+        if (error.code === 'P2002') {
+            throw new Error("Tutor profile already exists for this user.");
+        }
+        throw error;
     }
-}
+};
 
 const getTutor = async () => {
     try {
@@ -37,11 +53,11 @@ const getSingleTutor = async (payload: any) => {
     }
 }
 
-const updateTutor = async (payload: any) => {
+const updateTutor = async (id: string, payload: any) => {
     try {
-        const result = await prisma.tutorProfiles.update({ 
+        const result = await prisma.tutorProfiles.update({
             where: {
-                id: payload.id,
+                id: id,
             },
             data: {
                 aboutTutor: payload.aboutTutor,

@@ -51,7 +51,7 @@ const getSingleTutor = async (req: Request, res: Response, next: NextFunction) =
 
 const updateTutor = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await TutorService.updateTutor(req.body);    
+        const result = await TutorService.updateTutor( req.params.id as string, req.body);    
         res.status(201).json({
             success: true,
             massage: "Tutor profile updated successfully.",

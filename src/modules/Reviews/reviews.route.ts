@@ -7,6 +7,6 @@ router.post("/create", ReviewsController.createReview);
 router.get("/", ReviewsController.getAllReviews);
 router.get("/tutor/:tutorId", ReviewsController.getReviewsByTutorId);
 router.get("/student/:studentId", ReviewsController.getReviewsByStudentId);
-router.delete("/:reviewId", ReviewsController.deleteReview);
+router.delete("/delete/:reviewId", ReviewsController.deleteReview);
 
 export const ReviewsRoutes = router;
