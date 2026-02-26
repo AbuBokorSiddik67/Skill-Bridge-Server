@@ -1,28 +1,41 @@
 import jwt from "jsonwebtoken";
-import { prisma } from "../../lib/prisma";
 import bcrypt from "bcryptjs";
+import { prisma } from "../../lib/prisma";
 
 const createUser = async (payload: any) => {
     try {
-        const hashPassword = await bcrypt.hash(payload.password, 8);
-
+        const hashedPassword = await bcrypt.hash(payload.password, 10);
         const result = await prisma.user.create({
             data: {
                 email: payload.email,
-                password: hashPassword,
+                password: hashedPassword,
                 role: payload.role,
-                phone: payload.phone,
                 name: payload.name,
-                imageLink: payload.imageLink,
-                categoryId: payload.categoryId,
-                bio: payload.bio,
+                phone: payload.phone || null,
+                imageLink: payload.imageLink || null,
+                bio: payload.bio || null,
+                address: payload.address || null
             },
+            select: {
+                id: true,
+                email: true,
+                role: true,
+                name: true,
+                phone: true,
+                imageLink: true,
+                bio: true,
+                address: true,
+                status: true,
+                emailVerified: true,
+                createdAt: true,
+                updatedAt: true,
+            }
         });
-
-        const { password, ...userData } = result;
-        return userData;
-
+        return result;
     } catch (error: any) {
+        if (error.code === 'P2002') {
+            throw new Error("This email is already registered.",);
+        }
         throw error;
     }
 };
@@ -59,8 +72,23 @@ const logInUser = async (payload: any) => {
     }
 }
 
+const getMe = async (payload: any) => {
+    try {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: payload.id,
+            }
+        });
+        const { password, ...userData } = user!;
+        return userData;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const AuthService = {
     // Add service methods here
     createUser,
     logInUser,
+    getMe,
 };

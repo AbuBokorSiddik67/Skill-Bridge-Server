@@ -7,41 +7,65 @@ datasource db {
   provider = "postgresql"
 }
 
+//////////////////////
+// USER MODEL
+//////////////////////
+
 model User {
-  id             String           @id @default(uuid())
-  email          String           @unique
-  password       String
-  role           Role
-  name           String
-  imageLink      String?
-  categoryId     String?
-  bio            String?
-  status         UserStatus       @default(ACTIVE)
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
-  phone          String?
-  bookings       Bookings[]
-  studentReviews StudentReviews[]
-  tutorProfile   TutorProfiles?
-  category       Categories?      @relation(fields: [categoryId], references: [id])
+  id                  String           @id @default(uuid())
+  email               String           @unique
+  password            String
+  role                Role
+  name                String
+  phone               String?
+  imageLink           String?
+  bio                 String?
+  address             String?
+  emailVerified       Boolean          @default(false)
+  failedLoginAttempts Int              @default(0)
+  lastLogin           DateTime?
+  refreshToken        String?
+  status              UserStatus       @default(ACTIVE)
+  isDeleted           Boolean          @default(false)
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  bookings            Bookings[]       @relation("StudentBookings")
+  studentReviews      StudentReviews[] @relation("StudentReviewRelation")
+  tutorProfile        TutorProfiles?
 
   @@map("users")
 }
 
+//////////////////////
+// TUTOR PROFILE
+//////////////////////
+
 model TutorProfiles {
-  id             String           @id @default(uuid())
-  userId         String           @unique
-  aboutTutor     String
-  sessionPrice   Float?
-  status         TutorStatus      @default(AVAILABLE)
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
-  bookings       Bookings[]
-  studentReviews StudentReviews[]
-  user           User             @relation(fields: [userId], references: [id])
+  id              String      @id @default(uuid())
+  userId          String      @unique
+  aboutTutor      String
+  sessionPrice    Float?
+  experienceYears Int?
+  education       String?
+  averageRating   Float       @default(0)
+  totalReviews    Int         @default(0)
+  totalEarnings   Float       @default(0)
+  status          TutorStatus @default(AVAILABLE)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  bookings        Bookings[]       @relation("TutorBookings")
+  studentReviews  StudentReviews[] @relation("TutorReviewRelation")
+
+  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("tutor_profiles")
 }
+
+//////////////////////
+// CATEGORIES
+//////////////////////
 
 model Categories {
   id        String         @id @default(uuid())
@@ -49,28 +73,48 @@ model Categories {
   status    CategoryStatus @default(ACTIVE)
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
+
   bookings  Bookings[]
-  users     User[]
 
   @@map("categories")
 }
 
+//////////////////////
+// BOOKINGS
+//////////////////////
+
 model Bookings {
-  id         String        @id @default(uuid())
-  tutorId    String
-  studentId  String
-  categoryId String
-  date       DateTime
-  totalPrice Float?
-  status     BookingStatus @default(PENDING)
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
-  category   Categories    @relation(fields: [categoryId], references: [id])
-  student    User          @relation(fields: [studentId], references: [id])
-  tutor      TutorProfiles @relation(fields: [tutorId], references: [id])
+  id                 String         @id @default(uuid())
+  tutorId            String
+  studentId          String
+  categoryId         String
+  startDate          DateTime
+  endDate            DateTime
+  totalPrice         Float?
+  location           String?
+  meetingLink        String?
+  notes              String?
+  cancellationReason String?
+  paymentMethod      PaymentMethod?
+  paymentStatus      PaymentStatus  @default(PENDING)
+  status             BookingStatus  @default(PENDING)
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  category           Categories     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  student            User           @relation("StudentBookings", fields: [studentId], references: [id], onDelete: Cascade)
+  tutor              TutorProfiles  @relation("TutorBookings", fields: [tutorId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@index([tutorId])
+  @@index([status])
 
   @@map("bookings")
 }
+
+//////////////////////
+// STUDENT REVIEWS
+//////////////////////
 
 model StudentReviews {
   id        String        @id @default(uuid())
@@ -78,16 +122,22 @@ model StudentReviews {
   studentId String
   rating    Int
   comment   String?
-  status    ReviewStatus  @default(PENDING)
+  status    ReviewStatus  @default(APPROVED)
   createdAt DateTime      @default(now())
   updatedAt DateTime      @updatedAt
-  student   User          @relation(fields: [studentId], references: [id])
-  tutor     TutorProfiles @relation(fields: [tutorId], references: [id])
+
+  student   User          @relation("StudentReviewRelation", fields: [studentId], references: [id], onDelete: Cascade)
+  tutor     TutorProfiles @relation("TutorReviewRelation", fields: [tutorId], references: [id], onDelete: Cascade)
 
   @@map("student_reviews")
 }
 
+//////////////////////
+// ENUMS
+//////////////////////
+
 enum Role {
+  ADMIN
   STUDENT
   TUTOR
 }
@@ -97,6 +147,21 @@ enum BookingStatus {
   ACCEPTED
   REJECTED
   COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CASH
+  BKASH
+  NAGAD
+  CARD
 }
 
 enum UserStatus {

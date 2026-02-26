@@ -28,10 +28,18 @@ export type AggregateTutorProfiles = {
 
 export type TutorProfilesAvgAggregateOutputType = {
   sessionPrice: number | null
+  experienceYears: number | null
+  averageRating: number | null
+  totalReviews: number | null
+  totalEarnings: number | null
 }
 
 export type TutorProfilesSumAggregateOutputType = {
   sessionPrice: number | null
+  experienceYears: number | null
+  averageRating: number | null
+  totalReviews: number | null
+  totalEarnings: number | null
 }
 
 export type TutorProfilesMinAggregateOutputType = {
@@ -39,6 +47,11 @@ export type TutorProfilesMinAggregateOutputType = {
   userId: string | null
   aboutTutor: string | null
   sessionPrice: number | null
+  experienceYears: number | null
+  education: string | null
+  averageRating: number | null
+  totalReviews: number | null
+  totalEarnings: number | null
   status: $Enums.TutorStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -49,6 +62,11 @@ export type TutorProfilesMaxAggregateOutputType = {
   userId: string | null
   aboutTutor: string | null
   sessionPrice: number | null
+  experienceYears: number | null
+  education: string | null
+  averageRating: number | null
+  totalReviews: number | null
+  totalEarnings: number | null
   status: $Enums.TutorStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -59,6 +77,11 @@ export type TutorProfilesCountAggregateOutputType = {
   userId: number
   aboutTutor: number
   sessionPrice: number
+  experienceYears: number
+  education: number
+  averageRating: number
+  totalReviews: number
+  totalEarnings: number
   status: number
   createdAt: number
   updatedAt: number
@@ -68,10 +91,18 @@ export type TutorProfilesCountAggregateOutputType = {
 
 export type TutorProfilesAvgAggregateInputType = {
   sessionPrice?: true
+  experienceYears?: true
+  averageRating?: true
+  totalReviews?: true
+  totalEarnings?: true
 }
 
 export type TutorProfilesSumAggregateInputType = {
   sessionPrice?: true
+  experienceYears?: true
+  averageRating?: true
+  totalReviews?: true
+  totalEarnings?: true
 }
 
 export type TutorProfilesMinAggregateInputType = {
@@ -79,6 +110,11 @@ export type TutorProfilesMinAggregateInputType = {
   userId?: true
   aboutTutor?: true
   sessionPrice?: true
+  experienceYears?: true
+  education?: true
+  averageRating?: true
+  totalReviews?: true
+  totalEarnings?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -89,6 +125,11 @@ export type TutorProfilesMaxAggregateInputType = {
   userId?: true
   aboutTutor?: true
   sessionPrice?: true
+  experienceYears?: true
+  education?: true
+  averageRating?: true
+  totalReviews?: true
+  totalEarnings?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -99,6 +140,11 @@ export type TutorProfilesCountAggregateInputType = {
   userId?: true
   aboutTutor?: true
   sessionPrice?: true
+  experienceYears?: true
+  education?: true
+  averageRating?: true
+  totalReviews?: true
+  totalEarnings?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -196,6 +242,11 @@ export type TutorProfilesGroupByOutputType = {
   userId: string
   aboutTutor: string
   sessionPrice: number | null
+  experienceYears: number | null
+  education: string | null
+  averageRating: number
+  totalReviews: number
+  totalEarnings: number
   status: $Enums.TutorStatus
   createdAt: Date
   updatedAt: Date
@@ -229,6 +280,11 @@ export type TutorProfilesWhereInput = {
   userId?: Prisma.StringFilter<"TutorProfiles"> | string
   aboutTutor?: Prisma.StringFilter<"TutorProfiles"> | string
   sessionPrice?: Prisma.FloatNullableFilter<"TutorProfiles"> | number | null
+  experienceYears?: Prisma.IntNullableFilter<"TutorProfiles"> | number | null
+  education?: Prisma.StringNullableFilter<"TutorProfiles"> | string | null
+  averageRating?: Prisma.FloatFilter<"TutorProfiles"> | number
+  totalReviews?: Prisma.IntFilter<"TutorProfiles"> | number
+  totalEarnings?: Prisma.FloatFilter<"TutorProfiles"> | number
   status?: Prisma.EnumTutorStatusFilter<"TutorProfiles"> | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFilter<"TutorProfiles"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TutorProfiles"> | Date | string
@@ -242,6 +298,11 @@ export type TutorProfilesOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   aboutTutor?: Prisma.SortOrder
   sessionPrice?: Prisma.SortOrderInput | Prisma.SortOrder
+  experienceYears?: Prisma.SortOrderInput | Prisma.SortOrder
+  education?: Prisma.SortOrderInput | Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalReviews?: Prisma.SortOrder
+  totalEarnings?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -258,6 +319,11 @@ export type TutorProfilesWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TutorProfilesWhereInput | Prisma.TutorProfilesWhereInput[]
   aboutTutor?: Prisma.StringFilter<"TutorProfiles"> | string
   sessionPrice?: Prisma.FloatNullableFilter<"TutorProfiles"> | number | null
+  experienceYears?: Prisma.IntNullableFilter<"TutorProfiles"> | number | null
+  education?: Prisma.StringNullableFilter<"TutorProfiles"> | string | null
+  averageRating?: Prisma.FloatFilter<"TutorProfiles"> | number
+  totalReviews?: Prisma.IntFilter<"TutorProfiles"> | number
+  totalEarnings?: Prisma.FloatFilter<"TutorProfiles"> | number
   status?: Prisma.EnumTutorStatusFilter<"TutorProfiles"> | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFilter<"TutorProfiles"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TutorProfiles"> | Date | string
@@ -271,6 +337,11 @@ export type TutorProfilesOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   aboutTutor?: Prisma.SortOrder
   sessionPrice?: Prisma.SortOrderInput | Prisma.SortOrder
+  experienceYears?: Prisma.SortOrderInput | Prisma.SortOrder
+  education?: Prisma.SortOrderInput | Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalReviews?: Prisma.SortOrder
+  totalEarnings?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -289,6 +360,11 @@ export type TutorProfilesScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"TutorProfiles"> | string
   aboutTutor?: Prisma.StringWithAggregatesFilter<"TutorProfiles"> | string
   sessionPrice?: Prisma.FloatNullableWithAggregatesFilter<"TutorProfiles"> | number | null
+  experienceYears?: Prisma.IntNullableWithAggregatesFilter<"TutorProfiles"> | number | null
+  education?: Prisma.StringNullableWithAggregatesFilter<"TutorProfiles"> | string | null
+  averageRating?: Prisma.FloatWithAggregatesFilter<"TutorProfiles"> | number
+  totalReviews?: Prisma.IntWithAggregatesFilter<"TutorProfiles"> | number
+  totalEarnings?: Prisma.FloatWithAggregatesFilter<"TutorProfiles"> | number
   status?: Prisma.EnumTutorStatusWithAggregatesFilter<"TutorProfiles"> | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TutorProfiles"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TutorProfiles"> | Date | string
@@ -298,6 +374,11 @@ export type TutorProfilesCreateInput = {
   id?: string
   aboutTutor: string
   sessionPrice?: number | null
+  experienceYears?: number | null
+  education?: string | null
+  averageRating?: number
+  totalReviews?: number
+  totalEarnings?: number
   status?: $Enums.TutorStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -311,6 +392,11 @@ export type TutorProfilesUncheckedCreateInput = {
   userId: string
   aboutTutor: string
   sessionPrice?: number | null
+  experienceYears?: number | null
+  education?: string | null
+  averageRating?: number
+  totalReviews?: number
+  totalEarnings?: number
   status?: $Enums.TutorStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -322,6 +408,11 @@ export type TutorProfilesUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -335,6 +426,11 @@ export type TutorProfilesUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -347,6 +443,11 @@ export type TutorProfilesCreateManyInput = {
   userId: string
   aboutTutor: string
   sessionPrice?: number | null
+  experienceYears?: number | null
+  education?: string | null
+  averageRating?: number
+  totalReviews?: number
+  totalEarnings?: number
   status?: $Enums.TutorStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -356,6 +457,11 @@ export type TutorProfilesUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -366,6 +472,11 @@ export type TutorProfilesUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -381,6 +492,11 @@ export type TutorProfilesCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   aboutTutor?: Prisma.SortOrder
   sessionPrice?: Prisma.SortOrder
+  experienceYears?: Prisma.SortOrder
+  education?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalReviews?: Prisma.SortOrder
+  totalEarnings?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -388,6 +504,10 @@ export type TutorProfilesCountOrderByAggregateInput = {
 
 export type TutorProfilesAvgOrderByAggregateInput = {
   sessionPrice?: Prisma.SortOrder
+  experienceYears?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalReviews?: Prisma.SortOrder
+  totalEarnings?: Prisma.SortOrder
 }
 
 export type TutorProfilesMaxOrderByAggregateInput = {
@@ -395,6 +515,11 @@ export type TutorProfilesMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   aboutTutor?: Prisma.SortOrder
   sessionPrice?: Prisma.SortOrder
+  experienceYears?: Prisma.SortOrder
+  education?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalReviews?: Prisma.SortOrder
+  totalEarnings?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -405,6 +530,11 @@ export type TutorProfilesMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   aboutTutor?: Prisma.SortOrder
   sessionPrice?: Prisma.SortOrder
+  experienceYears?: Prisma.SortOrder
+  education?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalReviews?: Prisma.SortOrder
+  totalEarnings?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -412,6 +542,10 @@ export type TutorProfilesMinOrderByAggregateInput = {
 
 export type TutorProfilesSumOrderByAggregateInput = {
   sessionPrice?: Prisma.SortOrder
+  experienceYears?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalReviews?: Prisma.SortOrder
+  totalEarnings?: Prisma.SortOrder
 }
 
 export type TutorProfilesScalarRelationFilter = {
@@ -459,6 +593,22 @@ export type NullableFloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type EnumTutorStatusFieldUpdateOperationsInput = {
   set?: $Enums.TutorStatus
 }
@@ -495,6 +645,11 @@ export type TutorProfilesCreateWithoutUserInput = {
   id?: string
   aboutTutor: string
   sessionPrice?: number | null
+  experienceYears?: number | null
+  education?: string | null
+  averageRating?: number
+  totalReviews?: number
+  totalEarnings?: number
   status?: $Enums.TutorStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -506,6 +661,11 @@ export type TutorProfilesUncheckedCreateWithoutUserInput = {
   id?: string
   aboutTutor: string
   sessionPrice?: number | null
+  experienceYears?: number | null
+  education?: string | null
+  averageRating?: number
+  totalReviews?: number
+  totalEarnings?: number
   status?: $Enums.TutorStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -533,6 +693,11 @@ export type TutorProfilesUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -544,6 +709,11 @@ export type TutorProfilesUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -555,6 +725,11 @@ export type TutorProfilesCreateWithoutBookingsInput = {
   id?: string
   aboutTutor: string
   sessionPrice?: number | null
+  experienceYears?: number | null
+  education?: string | null
+  averageRating?: number
+  totalReviews?: number
+  totalEarnings?: number
   status?: $Enums.TutorStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -567,6 +742,11 @@ export type TutorProfilesUncheckedCreateWithoutBookingsInput = {
   userId: string
   aboutTutor: string
   sessionPrice?: number | null
+  experienceYears?: number | null
+  education?: string | null
+  averageRating?: number
+  totalReviews?: number
+  totalEarnings?: number
   status?: $Enums.TutorStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -593,6 +773,11 @@ export type TutorProfilesUpdateWithoutBookingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -605,6 +790,11 @@ export type TutorProfilesUncheckedUpdateWithoutBookingsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -615,6 +805,11 @@ export type TutorProfilesCreateWithoutStudentReviewsInput = {
   id?: string
   aboutTutor: string
   sessionPrice?: number | null
+  experienceYears?: number | null
+  education?: string | null
+  averageRating?: number
+  totalReviews?: number
+  totalEarnings?: number
   status?: $Enums.TutorStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -627,6 +822,11 @@ export type TutorProfilesUncheckedCreateWithoutStudentReviewsInput = {
   userId: string
   aboutTutor: string
   sessionPrice?: number | null
+  experienceYears?: number | null
+  education?: string | null
+  averageRating?: number
+  totalReviews?: number
+  totalEarnings?: number
   status?: $Enums.TutorStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -653,6 +853,11 @@ export type TutorProfilesUpdateWithoutStudentReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -665,6 +870,11 @@ export type TutorProfilesUncheckedUpdateWithoutStudentReviewsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   aboutTutor?: Prisma.StringFieldUpdateOperationsInput | string
   sessionPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  experienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviews?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTutorStatusFieldUpdateOperationsInput | $Enums.TutorStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -716,6 +926,11 @@ export type TutorProfilesSelect<ExtArgs extends runtime.Types.Extensions.Interna
   userId?: boolean
   aboutTutor?: boolean
   sessionPrice?: boolean
+  experienceYears?: boolean
+  education?: boolean
+  averageRating?: boolean
+  totalReviews?: boolean
+  totalEarnings?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -730,6 +945,11 @@ export type TutorProfilesSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   userId?: boolean
   aboutTutor?: boolean
   sessionPrice?: boolean
+  experienceYears?: boolean
+  education?: boolean
+  averageRating?: boolean
+  totalReviews?: boolean
+  totalEarnings?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -741,6 +961,11 @@ export type TutorProfilesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   userId?: boolean
   aboutTutor?: boolean
   sessionPrice?: boolean
+  experienceYears?: boolean
+  education?: boolean
+  averageRating?: boolean
+  totalReviews?: boolean
+  totalEarnings?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -752,12 +977,17 @@ export type TutorProfilesSelectScalar = {
   userId?: boolean
   aboutTutor?: boolean
   sessionPrice?: boolean
+  experienceYears?: boolean
+  education?: boolean
+  averageRating?: boolean
+  totalReviews?: boolean
+  totalEarnings?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TutorProfilesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "aboutTutor" | "sessionPrice" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["tutorProfiles"]>
+export type TutorProfilesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "aboutTutor" | "sessionPrice" | "experienceYears" | "education" | "averageRating" | "totalReviews" | "totalEarnings" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["tutorProfiles"]>
 export type TutorProfilesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | Prisma.TutorProfiles$bookingsArgs<ExtArgs>
   studentReviews?: boolean | Prisma.TutorProfiles$studentReviewsArgs<ExtArgs>
@@ -783,6 +1013,11 @@ export type $TutorProfilesPayload<ExtArgs extends runtime.Types.Extensions.Inter
     userId: string
     aboutTutor: string
     sessionPrice: number | null
+    experienceYears: number | null
+    education: string | null
+    averageRating: number
+    totalReviews: number
+    totalEarnings: number
     status: $Enums.TutorStatus
     createdAt: Date
     updatedAt: Date
@@ -1216,6 +1451,11 @@ export interface TutorProfilesFieldRefs {
   readonly userId: Prisma.FieldRef<"TutorProfiles", 'String'>
   readonly aboutTutor: Prisma.FieldRef<"TutorProfiles", 'String'>
   readonly sessionPrice: Prisma.FieldRef<"TutorProfiles", 'Float'>
+  readonly experienceYears: Prisma.FieldRef<"TutorProfiles", 'Int'>
+  readonly education: Prisma.FieldRef<"TutorProfiles", 'String'>
+  readonly averageRating: Prisma.FieldRef<"TutorProfiles", 'Float'>
+  readonly totalReviews: Prisma.FieldRef<"TutorProfiles", 'Int'>
+  readonly totalEarnings: Prisma.FieldRef<"TutorProfiles", 'Float'>
   readonly status: Prisma.FieldRef<"TutorProfiles", 'TutorStatus'>
   readonly createdAt: Prisma.FieldRef<"TutorProfiles", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"TutorProfiles", 'DateTime'>

@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { AuthService } from "./auth.service";
-import { success } from "zod";
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -22,6 +21,11 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
 const logInUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await AuthService.logInUser(req.body);
+        res.cookie("token", result.token, {
+            secure: false,
+            httpOnly: true,
+            sameSite: "strict",
+        });
         res.status(200).json({
             success: true,
             message: "Login successful",
@@ -36,8 +40,26 @@ const logInUser = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
+const getMe = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user = req.user;
+        const result = await AuthService.getMe(user);
+        res.status(200).json({
+            success: true,
+            message: "User data retrieved successfully",
+            data: result,
+        });
+    } catch (error: any) {
+        res.status(401).json({
+            success: false,
+            massage: error.massage || "Something wrong !!!"
+        });
+    }
+}
+
 export const AuthController = {
     // Add controller methods here
     createUser,
     logInUser,
+    getMe,
 };

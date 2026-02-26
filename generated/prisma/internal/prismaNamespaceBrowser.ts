@@ -80,13 +80,18 @@ export const UserScalarFieldEnum = {
   password: 'password',
   role: 'role',
   name: 'name',
+  phone: 'phone',
   imageLink: 'imageLink',
-  categoryId: 'categoryId',
   bio: 'bio',
+  address: 'address',
+  emailVerified: 'emailVerified',
+  failedLoginAttempts: 'failedLoginAttempts',
+  lastLogin: 'lastLogin',
+  refreshToken: 'refreshToken',
   status: 'status',
+  isDeleted: 'isDeleted',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  phone: 'phone'
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -97,6 +102,11 @@ export const TutorProfilesScalarFieldEnum = {
   userId: 'userId',
   aboutTutor: 'aboutTutor',
   sessionPrice: 'sessionPrice',
+  experienceYears: 'experienceYears',
+  education: 'education',
+  averageRating: 'averageRating',
+  totalReviews: 'totalReviews',
+  totalEarnings: 'totalEarnings',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -121,8 +131,15 @@ export const BookingsScalarFieldEnum = {
   tutorId: 'tutorId',
   studentId: 'studentId',
   categoryId: 'categoryId',
-  date: 'date',
+  startDate: 'startDate',
+  endDate: 'endDate',
   totalPrice: 'totalPrice',
+  location: 'location',
+  meetingLink: 'meetingLink',
+  notes: 'notes',
+  cancellationReason: 'cancellationReason',
+  paymentMethod: 'paymentMethod',
+  paymentStatus: 'paymentStatus',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
