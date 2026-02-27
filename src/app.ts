@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import router from './routes';
 import cookieParser from "cookie-parser";
+import { notFound } from './middlewares/notFound';
 
 const app: Application = express();
 
@@ -16,5 +17,8 @@ app.use('/v1/api', router);
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from skill-bridge server!');
 });
+
+// handle not found routes
+app.use(notFound);
 
 export default app;
