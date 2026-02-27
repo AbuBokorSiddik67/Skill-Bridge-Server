@@ -37,6 +37,24 @@ const getCategory = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
+const getSingleCategory = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        // Logic to create a new category
+        const result = await CategoriesService.getSingleCategory(req.params.id as string);
+        res.status(201).json({
+            success: true,
+            message: "Category retrived successfully",
+            data: result
+        });
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: "Error retrived category",
+            error: error.message
+        });
+    }
+};
+
 const updateCategory = async (req: Request, res: Response, next: NextFunction) => {
     try {
         // Logic to create a new category
@@ -77,6 +95,7 @@ export const CategoriesController = {
     // Add controller methods here
     createCategory,
     getCategory,
+    getSingleCategory,
     updateCategory,
     deleteCategory
 };

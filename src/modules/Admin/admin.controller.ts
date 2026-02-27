@@ -1,55 +1,5 @@
 import { Request, Response } from "express";
 import { AdminService } from "./admin.service";
-import { de } from "zod/v4/locales";
-
-const getAllUsers = async (req: Request, res: Response) => {
-    try {
-        const result = await AdminService.getAllUsers();
-        res.status(200).json({
-            success: true,
-            message: "Users fetched successfully",
-            data: result,
-        });
-    } catch (error: any) {
-        res.status(500).json({
-            success: false,
-            message: error.message || "Failed to fetch users",
-        });
-    }
-};
-
-const profileUpdate = async (req: Request, res: Response) => {
-    // Implement the logic to update the student's profile
-    try {
-        const result = await AdminService.profileUpdate(req.params.id as string, req.body);
-        res.status(200).json({
-            success: true,
-            message: "Profile updated successfully",
-            data: result,
-        });
-    } catch (error: any) {
-        res.status(500).json({
-            success: false,
-            message: error.message || "Failed to update profile",
-        });
-    }
-}
-
-const deleteProfile = async (req: Request, res: Response) => {
-    try {
-        const result = await AdminService.deleteProfile(req.params.id as string);
-        res.status(200).json({
-            success: true,
-            message: "Profile deleted successfully",
-            data: result,
-        });
-    } catch (error: any) {
-        res.status(500).json({
-            success: false,
-            message: error.message || "Failed to delete profile",
-        });
-    }
-};
 
 const deletdUser = async (req: Request, res: Response) => {
     try {
@@ -84,10 +34,25 @@ const deletdUser = async (req: Request, res: Response) => {
     }
 };
 
+const deleteUser = async (req: Request, res: Response) => {
+    const id = req.params.id  as string;
+    try {
+        const result = await AdminService.deleteUser(id);
+        res.status(200).json({
+            success: true,
+            message: "User permanently deleted successfully",
+            data: result,
+        });
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message || "Failed to delete user",
+        });
+    }
+};
+
 export const AdminController = {
     // Add controller methods here
-    profileUpdate,
-    getAllUsers,
-    deleteProfile,
     deletdUser,
+    deleteUser,
 };

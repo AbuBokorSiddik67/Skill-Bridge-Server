@@ -31,7 +31,6 @@ const auth = (...roles: UserRole[]) => {
                 token,
                 process.env.JWT_SECRET_KEY as string
             ) as JwtPayload;
-            console.log("Decoded token Email:", decoded.email, decoded.role);
 
             const userData = await prisma.user.findUnique({
                 where: { email: decoded.email },
