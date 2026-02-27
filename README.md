@@ -1,4 +1,6 @@
 # Skill-Bridge-Server
+
+<!-- 
 adminToken= Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4YmZjOTUxLTc3MzYtNDhlYS04YWJhLTdjYjhjOGQ5NmMyYSIsIm5hbWUiOiJTeXN0ZW0gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdGF0dXMiOiJBQ1RJVkUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTc3MjE2MDQ5MSwiZXhwIjoxNzcyNzY1MjkxfQ.ViYIK19rhWQHQahYH9DmB-H_yldOH9i6I3wcIstmYyE
 
 Student/UserRoute{
@@ -45,6 +47,4 @@ http://skillbridgeserver-gules.vercel.app/v1/api/reviews/delete/:id
 AdminRoute{
 http://skillbridgeserver-gules.vercel.app/v1/api/admin/deleted-users
 http://skillbridgeserver-gules.vercel.app/v1/api/admin/delete-users/:id
-}
-
- 
+} -->
