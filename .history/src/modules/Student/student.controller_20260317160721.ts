@@ -4,7 +4,7 @@ import { StudentService } from "./student.service";
 const getAll = async (req: Request, res: Response) => {
     // Implement the logic to update the student's profile
     try {
-        const result = await StudentService.getAll();
+        const result = await StudentService.getAll;
         res.status(201).json({
             success: true,
             message: "User Data retrivet successfully",

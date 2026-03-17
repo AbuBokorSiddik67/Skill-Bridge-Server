@@ -96,10 +96,10 @@ const deleteProfile = async (id: string) => {
 
 const getAll = async () => {
     try {
-        const users = await prisma.user.findMany({
+        const user = await prisma.user.findMany({
             select: userSelect
         });
-        return users;
+        return user;
     } catch (error) {
         throw error;
     }
