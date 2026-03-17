@@ -13,7 +13,7 @@ const getAll = async (req: Request, res: Response) => {
     } catch (error: any) {
         res.status(500).json({
             success: false,
-            message: error.message || "Failed to get all user data",
+            message: error.message || "Fi",
         });
     }
 }
@@ -55,5 +55,4 @@ export const StudentController = {
     // Add controller methods here
     profileUpdate,
     deleteProfile,
-    getAll,
 };

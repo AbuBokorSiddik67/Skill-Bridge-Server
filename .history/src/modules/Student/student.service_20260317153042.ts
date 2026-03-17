@@ -97,7 +97,7 @@ const deleteProfile = async (id: string) => {
 const getAll = async (payload: any) => {
     try {
         const user = await prisma.user.findMany({
-            select: userSelect
+            select: u
         });
         return user;
     } catch (error) {

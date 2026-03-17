@@ -7,13 +7,13 @@ const getAll = async (req: Request, res: Response) => {
         const result = await StudentService.getAll;
         res.status(200).json({
             success: true,
-            message: "User Data retrivet successfully",
+            message: "User Data updated successfully",
             data: result,
         });
     } catch (error: any) {
         res.status(500).json({
             success: false,
-            message: error.message || "Failed to get all user data",
+            message: error.message || "Failed to update profile",
         });
     }
 }
@@ -55,5 +55,4 @@ export const StudentController = {
     // Add controller methods here
     profileUpdate,
     deleteProfile,
-    getAll,
 };

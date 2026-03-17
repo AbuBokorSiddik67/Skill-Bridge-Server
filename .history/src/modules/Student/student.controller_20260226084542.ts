@@ -1,23 +1,6 @@
 import { Request, Response } from "express";
 import { StudentService } from "./student.service";
 
-const getAll = async (req: Request, res: Response) => {
-    // Implement the logic to update the student's profile
-    try {
-        const result = await StudentService.getAll;
-        res.status(200).json({
-            success: true,
-            message: "User Data retrivet successfully",
-            data: result,
-        });
-    } catch (error: any) {
-        res.status(500).json({
-            success: false,
-            message: error.message || "Failed to get all user data",
-        });
-    }
-}
-
 const profileUpdate = async (req: Request, res: Response) => {
     // Implement the logic to update the student's profile
     try {
@@ -55,5 +38,4 @@ export const StudentController = {
     // Add controller methods here
     profileUpdate,
     deleteProfile,
-    getAll,
 };

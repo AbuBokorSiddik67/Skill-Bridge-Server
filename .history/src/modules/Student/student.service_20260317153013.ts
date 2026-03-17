@@ -1,23 +1,7 @@
 import { prisma } from "../../lib/prisma";
 import bcrypt from "bcryptjs";
 
-export const userSelect = {
-  id: true,
-  email: true,
-  role: true,
-  name: true,
-  phone: true,
-  imageLink: true,
-  bio: true,
-  address: true,
-  emailVerified: true,
-  failedLoginAttempts: true,
-  lastLogin: true,
-  status: true,
-  isDeleted: true,
-  createdAt: true,
-  updatedAt: true,
-};
+
 
 const profileUpdate = async (id: string, payload: any) => {
     try {
@@ -96,9 +80,7 @@ const deleteProfile = async (id: string) => {
 
 const getAll = async (payload: any) => {
     try {
-        const user = await prisma.user.findMany({
-            select: userSelect
-        });
+        const user = await prisma.user.findMany();
         return user;
     } catch (error) {
         throw error;

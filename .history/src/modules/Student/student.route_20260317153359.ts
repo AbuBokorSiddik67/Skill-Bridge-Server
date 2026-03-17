@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.put("/profile-update/:id", auth(UserRole.admin || UserRole.student), StudentController.profileUpdate);
 router.delete("/delete-profile/:id", auth(UserRole.admin || UserRole.student), StudentController.deleteProfile);
-router.get("/admin/users", auth(UserRole.admin) , StudentController.getAll)
+router.get("/admin/users")
 
 export const StudentRoutes = router;
