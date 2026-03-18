@@ -37,15 +37,15 @@ const auth = (...roles: UserRole[]) => {
             });
 
             if (!userData) {
-                throw new Error("User Unauthorized!");
+                throw new Error(" Unauthorized!");
             }
 
             if (userData.status !== "ACTIVE") {
-                throw new Error("User Not Active!!");
+                throw new Error("Unauthorized!!");
             }
 
             if (roles.length && !roles.includes(decoded.role)) {
-                throw new Error("Unauthorized Role Dont match!!!");
+                throw new Error("Unauthorized!!!");
             }
 
             req.user = decoded;

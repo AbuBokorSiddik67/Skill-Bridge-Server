@@ -45,7 +45,7 @@ const auth = (...roles: UserRole[]) => {
             }
 
             if (roles.length && !roles.includes(decoded.role)) {
-                throw new Error("Unauthorized Role Dont match!!!");
+                throw new Error("Unauthorized !!!");
             }
 
             req.user = decoded;
