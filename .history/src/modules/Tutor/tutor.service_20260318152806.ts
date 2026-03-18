@@ -44,7 +44,7 @@ const getSingleTutor = async (payload: any) => {
     try {
         const result = await prisma.tutorProfiles.findUnique({
             where: {
-                userId: payload.id,
+                id: payload.d,
             }
         })
         return result;
