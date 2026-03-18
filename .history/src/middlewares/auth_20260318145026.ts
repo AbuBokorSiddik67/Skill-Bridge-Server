@@ -44,8 +44,7 @@ const auth = (...roles: UserRole[]) => {
                 throw new Error("User Not Active!!");
             }
 
-            console.log("token data: ", decoded.role)
-            console.log("props data: ", roles)
+            console.log("token data: ",decoded.role)
 
             if (roles.length && !roles.includes(decoded.role)) {
                 throw new Error("Unauthorized Role Dont match!!!");

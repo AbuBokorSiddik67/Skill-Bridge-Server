@@ -45,7 +45,7 @@ const auth = (...roles: UserRole[]) => {
             }
 
             console.log("token data: ", decoded.role)
-            console.log("props data: ", roles)
+            console.log("props data: ")
 
             if (roles.length && !roles.includes(decoded.role)) {
                 throw new Error("Unauthorized Role Dont match!!!");

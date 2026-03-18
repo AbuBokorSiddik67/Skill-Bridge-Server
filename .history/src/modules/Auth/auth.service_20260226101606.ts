@@ -64,7 +64,8 @@ const logInUser = async (payload: any) => {
         };
         const token = jwt.sign(userData, process.env.JWT_SECRET_KEY as string, { expiresIn: "7d" });
         return {
-            token
+            token,
+            user,
         }
     } catch (error) {
         throw error;
