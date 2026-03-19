@@ -59,7 +59,7 @@ const updateTutor = async (id: string, payload: any) => {
             where: {
                 id: id,
             },
-            data: payload
+            data: 
         })
         return result;
     } catch (error) {
