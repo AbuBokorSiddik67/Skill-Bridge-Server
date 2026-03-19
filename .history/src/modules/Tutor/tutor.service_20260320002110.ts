@@ -52,7 +52,6 @@ const getSingleTutor = async (payload: any) => {
         throw error
     }
 }
-
 const getTutorAccount = async (payload: any) => {
     try {
         const result = await prisma.user.findUnique({

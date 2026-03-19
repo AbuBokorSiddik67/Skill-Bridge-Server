@@ -49,22 +49,6 @@ const getSingleTutor = async (req: Request, res: Response, next: NextFunction) =
     }
 }
 
-const getTutorAccount = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const result = await TutorService.getSingleTutor(req.params);
-        res.status(201).json({
-            success: true,
-            massage: "Tutor account retrieved successfully.",
-            data: result
-        })
-    } catch (error: any) {
-        res.status(401).json({
-            success: false,
-            massage: error.massage || "Something wrong !!!"
-        });
-    }
-}
-
 const updateTutor = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await TutorService.updateTutor( req.params.id as string, req.body);    
@@ -103,6 +87,5 @@ export const TutorController = {
     getTutor,
     getSingleTutor,
     updateTutor,
-    deleteTutor,
-    getTutorAccount
+    deleteTutor
 };

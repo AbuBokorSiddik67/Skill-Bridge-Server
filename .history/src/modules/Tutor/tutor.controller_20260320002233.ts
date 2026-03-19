@@ -103,6 +103,5 @@ export const TutorController = {
     getTutor,
     getSingleTutor,
     updateTutor,
-    deleteTutor,
-    getTutorAccount
+    deleteTutor
 };
