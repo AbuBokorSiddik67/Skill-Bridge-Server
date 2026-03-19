@@ -36,9 +36,8 @@ const profileUpdate = async (id: string, payload: any) => {
                 address: payload.address,
                 password: payload.password,
                 role: payload.role,
-                status: payload.status,
-                emailVerified: payload.emailVerified,
-                isDeleted: payload.isDeleted
+                status: 
+                emailVerified: payload.emailVerified
             },
             select: {
                 id: true,
@@ -101,7 +100,6 @@ const deleteProfile = async (id: string) => {
 const getAll = async () => {
     try {
         const users = await prisma.user.findMany({
-            where: { isDeleted: false },
             select: userSelect
         });
         return users;

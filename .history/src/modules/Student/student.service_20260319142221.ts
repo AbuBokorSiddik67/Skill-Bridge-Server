@@ -101,7 +101,7 @@ const deleteProfile = async (id: string) => {
 const getAll = async () => {
     try {
         const users = await prisma.user.findMany({
-            where: { isDeleted: false },
+            where: isDeleted=false,
             select: userSelect
         });
         return users;
