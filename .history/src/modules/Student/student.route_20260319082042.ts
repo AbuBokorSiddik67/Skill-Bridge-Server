@@ -5,7 +5,7 @@ import auth, { UserRole } from '../../middlewares/auth';
 const router = express.Router();
 
 router.get("/", auth(UserRole.admin) , StudentController.getAll)
-router.put("/profile-update/:id", auth(UserRole.admin, UserRole.student, UserRole.tutor), StudentController.profileUpdate);
-router.delete("/delete-profile/:id", auth(UserRole.admin, UserRole.student, UserRole.tutor), StudentController.deleteProfile);
+router.put("/profile-update/:id", auth(UserRole.admin, UserRole.student, U), StudentController.profileUpdate);
+router.delete("/delete-profile/:id", auth(UserRole.admin, UserRole.student), StudentController.deleteProfile);
 
 export const StudentRoutes = router;
