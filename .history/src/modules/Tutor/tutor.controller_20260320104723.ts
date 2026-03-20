@@ -53,13 +53,16 @@ const getSingleTutor = async (req: Request, res: Response, next: NextFunction) =
 const getAllTutorAccount = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await TutorService.getAllTutorAccount();
-        res.status(200).json({     
+        res.status(200).json({
             success: true,
-            message: "All tutor account retrieved successfully.",
+            massage: "All tutor account retrieved successfully.",
             data: result
         })
     } catch (error: any) {
-        next(error)                    
+        res.status(401).json({
+            success: false,
+            massage: error.massage || "Something wrong !!!"
+        });
     }
 }
 
