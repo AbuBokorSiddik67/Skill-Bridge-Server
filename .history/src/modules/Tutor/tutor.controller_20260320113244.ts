@@ -35,7 +35,7 @@ const getTutor = async (req: Request, res: Response, next: NextFunction) => {
 
 const getSingleTutorAccount = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await TutorService.getSingleTutorAccount(req.params);
+        const result = await TutorService.getSingleTutor(req.params);
         res.status(201).json({
             success: true,
             massage: "Tutor retrieved successfully.",
@@ -99,7 +99,7 @@ export const TutorController = {
     // Add controller methods here
     createTutor,
     getTutor,
-    getSingleTutorAccount,
+    getSingleTutorAccout,
     updateTutor,
     deleteTutor,
     getAllTutorAccount,

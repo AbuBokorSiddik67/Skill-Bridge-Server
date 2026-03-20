@@ -46,28 +46,14 @@ const getSingleTutorAccount = async (payload: any) => {
             where: {
                 userId: payload.id,
             },
-            include: {
-                user: {
-                    select: {
-                        id: true,
-                        email: true,
-                        name: true,
-                        phone: true,
-                        imageLink: true,
-                        bio: true,
-                        address: true,
-                        role: true,
-                        status: true,
-                        createdAt: true,
-                    }
-                }
-            }
+            include
         })
         return result;
     } catch (error) {
         throw error
     }
 }
+
 
 const getAllTutorAccount = async () => {
     try {

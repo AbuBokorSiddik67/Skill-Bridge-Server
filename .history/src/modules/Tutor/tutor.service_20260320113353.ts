@@ -69,6 +69,7 @@ const getSingleTutorAccount = async (payload: any) => {
     }
 }
 
+
 const getAllTutorAccount = async () => {
     try {
         const result = await prisma.tutorProfiles.findMany({
