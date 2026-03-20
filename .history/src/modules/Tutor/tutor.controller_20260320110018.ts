@@ -99,7 +99,7 @@ export const TutorController = {
     // Add controller methods here
     createTutor,
     getTutor,
-    // getSingleTutor,
+    getSingleTutor,
     updateTutor,
     deleteTutor,
     getAllTutorAccount,

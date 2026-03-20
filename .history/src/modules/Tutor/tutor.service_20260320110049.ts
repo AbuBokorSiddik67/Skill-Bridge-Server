@@ -111,7 +111,7 @@ export const TutorService = {
     // Add service methods here
     createTutor,
     getTutor,
-    // getSingleTutor,
+    getSingleTutor,
     updateTutor,
     deleteTutor,
     getAllTutorAccount
