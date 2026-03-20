@@ -36,6 +36,8 @@ const getTutor = async (req: Request, res: Response, next: NextFunction) => {
 const getSingleTutorAccount = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await TutorService.getSingleTutorAccount(req.params);
+        console.log(req.params);
+        console.log("result: ", resu)
         res.status(200).json({
             success: true,
             massage: "Tutor retrieved successfully.",
