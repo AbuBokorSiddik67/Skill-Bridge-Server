@@ -51,7 +51,7 @@ const getSingleTutor = async (req: Request, res: Response, next: NextFunction) =
 
 const getAllTutorAccount = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await TutorService.getAllTutorAccount();
+        const result = await TutorService.();
         res.status(200).json({     
             success: true,
             message: "All tutor account retrieved successfully.",
