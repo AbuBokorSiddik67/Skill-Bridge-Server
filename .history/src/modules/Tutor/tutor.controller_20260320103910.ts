@@ -49,13 +49,28 @@ const getSingleTutor = async (req: Request, res: Response, next: NextFunction) =
     }
 }
 
+const getTutorAccount = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const result = await TutorService.getSingleTutor(req.params);
+        res.status(201).json({
+            success: true,
+            massage: "Tutor account retrieved successfully.",
+            data: result
+        })
+    } catch (error: any) {
+        res.status(401).json({
+            success: false,
+            massage: error.massage || "Something wrong !!!"
+        });
+    }
+}
 
 const getAllTutorAccount = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await TutorService.getAllTutorAccount();
+        const result = await TutorService.getSingleTutor(req.params);
         res.status(201).json({
             success: true,
-            massage: "All tutor account retrieved successfully.",
+            massage: "Tutor account retrieved successfully.",
             data: result
         })
     } catch (error: any) {
@@ -106,5 +121,5 @@ export const TutorController = {
     getSingleTutor,
     updateTutor,
     deleteTutor,
-    getAllTutorAccount
+    getTutorAccount
 };

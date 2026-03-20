@@ -55,7 +55,7 @@ const getAllTutorAccount = async (req: Request, res: Response, next: NextFunctio
         const result = await TutorService.getAllTutorAccount();
         res.status(201).json({
             success: true,
-            massage: "All tutor account retrieved successfully.",
+            massage: "Tutor account retrieved successfully.",
             data: result
         })
     } catch (error: any) {

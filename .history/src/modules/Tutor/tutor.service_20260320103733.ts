@@ -53,10 +53,25 @@ const getSingleTutor = async (payload: any) => {
     }
 }
 
+const getTutorAccount = async (payload: any) => {
+    try {
+        const result = await prisma.user.findUnique({
+            where: {
+                id: payload.id,
+            }
+        })
+        return result;
+    } catch (error) {
+        throw error
+    }
+}
 
-const getAllTutorAccount = async () => {
+const getAllTutorAccount = async (payload: any) => {
     try {
         const result = await prisma.tutorProfiles.findMany({
+            where: {
+                id: payload.id,
+            },
             include: {
                 user: {
                     select: {
@@ -114,5 +129,6 @@ export const TutorService = {
     getSingleTutor,
     updateTutor,
     deleteTutor,
-    getAllTutorAccount
+    getTutorAccount,
+    
 };

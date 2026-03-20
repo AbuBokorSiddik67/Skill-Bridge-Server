@@ -114,5 +114,6 @@ export const TutorService = {
     getSingleTutor,
     updateTutor,
     deleteTutor,
+    getTutorAccount,
     getAllTutorAccount
 };
