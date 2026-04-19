@@ -22,7 +22,7 @@ const auth = (...roles: UserRole[]) => {
                     .trim();
             }
 
-            console.log("Extracted Token:", token);
+            c
 
             if (!token) {
                 throw new Error("Token not found!");
