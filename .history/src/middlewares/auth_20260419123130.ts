@@ -24,9 +24,9 @@ const auth = (...roles: UserRole[]) => {
 
             console.log("Extracted Token:", token);
 
-            if (!authHeader || !token) {
-                throw new Error("Token not found!");
-            }
+            // if (!token) {
+            //     throw new Error("Token not found!");
+            // }
 
             const decoded = jwt.verify(
                 token,

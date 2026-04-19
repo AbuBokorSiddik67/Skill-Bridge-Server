@@ -24,7 +24,7 @@ const auth = (...roles: UserRole[]) => {
 
             console.log("Extracted Token:", token);
 
-            if (!authHeader || !token) {
+            if (!au) {
                 throw new Error("Token not found!");
             }
 
