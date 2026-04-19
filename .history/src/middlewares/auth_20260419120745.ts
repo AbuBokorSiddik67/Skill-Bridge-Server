@@ -13,8 +13,7 @@ const auth = (...roles: UserRole[]) => {
         try {
             let token: string | undefined;
 
-            // const authHeader = req.headers.authorization;
-            token = req.headers.authorization;
+            const authHeader = req.headers.authorization;
 
             // if (authHeader && authHeader.startsWith("Bearer ")) {
             //     token = authHeader.split(/[ %]/)[1];

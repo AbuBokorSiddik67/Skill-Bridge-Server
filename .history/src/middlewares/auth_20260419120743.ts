@@ -13,16 +13,15 @@ const auth = (...roles: UserRole[]) => {
         try {
             let token: string | undefined;
 
-            // const authHeader = req.headers.authorization;
-            token = req.headers.authorization;
+            const authHeader = req.headers.authorization;
 
-            // if (authHeader && authHeader.startsWith("Bearer ")) {
-            //     token = authHeader.split(/[ %]/)[1];
-            // }
+            if (authHeader && authHeader.startsWith("Bearer ")) {
+                token = authHeader.split(/[ %]/)[1];
+            }
 
-            // if (token) {
-            //     token = token.replace(/^"|"$/g, "");
-            // }
+            if (token) {
+                token = token.replace(/^"|"$/g, "");
+            }
 
             if (!token) {
                 throw new Error("Token not found!!");
