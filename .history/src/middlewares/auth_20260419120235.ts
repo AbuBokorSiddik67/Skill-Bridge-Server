@@ -16,11 +16,12 @@ const auth = (...roles: UserRole[]) => {
             const authHeader = req.headers.authorization;
 
             if (authHeader && authHeader.startsWith("Bearer ")) {
-                token = authHeader.split(/[ %]/)[1];
+                token = authHeader.split(" "%")[1];
             }
 
             if (token) {
                 token = token.replace(/^"|"$/g, "");
+                console.log("Token after cleaning:", token);
             }
 
             if (!token) {
