@@ -21,9 +21,9 @@ const auth = (...roles: UserRole[]) => {
 
             if (token) {
                 token = token.replace(/^"|"$/g, "");
-                console.log("Token after cleaning:", token);
             }
 
+            
             if (!token) {
                 throw new Error("Token not found!!");
             }

@@ -51,6 +51,7 @@ const logInUser = async (payload: any) => {
         if (!user) {
             throw new Error("Invalid email! Please try another email");
         }
+        --
         const isPasswordValid = await bcrypt.compare(payload.password, user.password);
         if (!isPasswordValid) {
             throw new Error("Invalid password! Please try again");
@@ -64,7 +65,7 @@ const logInUser = async (payload: any) => {
         };
         const token = jwt.sign(userData, process.env.JWT_SECRET_KEY as string, { expiresIn: "7d" });
         return {
-            'token': `Bearer ${token}`,
+            token
         }
     } catch (error) {
         throw error;

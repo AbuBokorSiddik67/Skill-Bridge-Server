@@ -15,8 +15,11 @@ const auth = (...roles: UserRole[]) => {
 
             const authHeader = req.headers.authorization;
 
+            console.log("Authorization header:", authHeader);
+
             if (authHeader && authHeader.startsWith("Bearer ")) {
                 token = authHeader.split(" ")[1];
+                console.log("Token from Bearer header:", token);
             }
 
             if (token) {

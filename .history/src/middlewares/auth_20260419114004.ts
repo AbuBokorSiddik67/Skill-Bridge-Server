@@ -15,14 +15,17 @@ const auth = (...roles: UserRole[]) => {
 
             const authHeader = req.headers.authorization;
 
+            console.log("Authorization header:", req.headers.authorization);
+
             if (authHeader && authHeader.startsWith("Bearer ")) {
                 token = authHeader.split(" ")[1];
             }
 
             if (token) {
                 token = token.replace(/^"|"$/g, "");
-                console.log("Token after cleaning:", token);
             }
+
+            console.log("Token from header:", token);
 
             if (!token) {
                 throw new Error("Token not found!!");
