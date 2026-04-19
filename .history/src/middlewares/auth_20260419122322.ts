@@ -13,17 +13,20 @@ const auth = (...roles: UserRole[]) => {
         try {
             let token: string | undefined;
 
-            const authHeader = req.headers.authorization;
+            // const authHeader = req.headers.authorization;
+            // token = req.headers.authorization;
+            // console.log("clear token: ", token);
 
-            if (authHeader) {
-                token = authHeader
-                    .replace(/^Bearer[\s%20]+/i, "")
-                    .replace(/^"|"$/g, "")
-                    .trim();
+            if (authHeader && authHeader.startsWith("Bearer ")) {
+                token = authHeader.split(/[\s%20]+/)[1];
+            }
+
+            if (token) {
+                token = token.replace(/^"|"$/g, "");
             }
 
             if (!token) {
-                throw new Error("Token not found!");
+                throw new Error("Token not found!!");
             }
 
             const decoded = jwt.verify(
@@ -40,11 +43,11 @@ const auth = (...roles: UserRole[]) => {
             }
 
             if (userData.status !== "ACTIVE") {
-                throw new Error("User Not Active!");
+                throw new Error("User Not Active!!");
             }
 
             if (roles.length && !roles.includes(decoded.role)) {
-                throw new Error("Unauthorized: Role doesn't match!");
+                throw new Error("Unauthorized Role Dont match!!!");
             }
 
             req.user = decoded;
