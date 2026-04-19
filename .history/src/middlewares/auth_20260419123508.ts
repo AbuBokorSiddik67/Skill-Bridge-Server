@@ -26,14 +26,14 @@ const auth = (...roles: UserRole[]) => {
 
             if (!authHeader || !token) {
                 console.log("Auth Header or Token not found!");
-                // throw new Error("Token not found!");
+                throw new Error("Token not found!");
             }
 
             console.log("Auth Header:", authHeader);
             console.log("Extracted Last Token:", token);
 
             const decoded = jwt.verify(
-                token!,
+                token,
                 process.env.JWT_SECRET_KEY as string
             ) as JwtPayload;
 
