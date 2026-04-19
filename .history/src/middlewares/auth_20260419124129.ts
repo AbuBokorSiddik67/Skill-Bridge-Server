@@ -21,13 +21,14 @@ const auth = (...roles: UserRole[]) => {
                     .replace(/^"|"$/g, "")
                     .trim();
             }
+            
 
             if (!token) {
                 throw new Error("Token not found!");
             }
 
             const decoded = jwt.verify(
-                token!,
+                token,
                 process.env.JWT_SECRET_KEY as string
             ) as JwtPayload;
 

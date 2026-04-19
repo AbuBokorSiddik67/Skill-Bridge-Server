@@ -22,12 +22,14 @@ const auth = (...roles: UserRole[]) => {
                     .trim();
             }
 
-            if (!token) {
+            console.log("Extracted Token:", token);
+
+            if (!authHeader || !token) {
                 throw new Error("Token not found!");
             }
 
             const decoded = jwt.verify(
-                token!,
+                token,
                 process.env.JWT_SECRET_KEY as string
             ) as JwtPayload;
 
